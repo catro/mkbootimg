@@ -1,0 +1,8 @@
+assert(getprop("ro.product.device") == "galaxysl" || getprop("ro.build.product") == "galaxysl" || 
+       getprop("ro.product.device") == "GT-I9003" || getprop("ro.build.product") == "GT-I9003");
+ui_print("Start flashing...");
+assert(package_extract_file("boot.img", "/tmp/boot.img"),
+       write_raw_image("/tmp/boot.img", "boot"),
+       delete("/tmp/boot.img"));
+ui_print("Done...");
+run_program("/sbin/reboot");
